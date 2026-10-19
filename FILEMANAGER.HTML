@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Files</title>
+
+<style>
+
+body{
+background:black;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+
+.box{
+background:#222;
+border-radius:25px;
+padding:20px;
+margin:20px;
+}
+
+
+input,textarea{
+
+width:90%;
+font-size:20px;
+padding:10px;
+border-radius:15px;
+
+}
+
+
+textarea{
+
+height:150px;
+background:#111;
+color:white;
+
+}
+
+
+button{
+
+width:85%;
+height:60px;
+margin:10px;
+font-size:22px;
+border-radius:30px;
+background:#333;
+color:white;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>📁 Files</h1>
+
+
+
+<div class="box">
+
+
+<input id="name" placeholder="File name">
+
+
+<textarea id="data" placeholder="Text"></textarea>
+
+
+
+<button onclick="save()">
+💾 SAVE
+</button>
+
+
+<button onclick="openFile()">
+📂 OPEN
+</button>
+
+
+<button onclick="removeFile()">
+🗑 DELETE
+</button>
+
+
+<p id="list"></p>
+
+
+
+</div>
+
+
+<a href="../index.html">
+
+<button>
+🏠 HOME
+</button>
+
+</a>
+
+
+
+<script>
+
+
+function save(){
+
+localStorage.setItem(
+"RT_"+name.value,
+data.value
+);
+
+show();
+
+}
+
+
+
+function openFile(){
+
+data.value=
+localStorage.getItem(
+"RT_"+name.value
+)||"";
+
+}
+
+
+
+function removeFile(){
+
+localStorage.removeItem(
+"RT_"+name.value
+);
+
+show();
+
+}
+
+
+
+function show(){
+
+let x="";
+
+for(let i=0;i<localStorage.length;i++){
+
+let k=localStorage.key(i);
+
+if(k.startsWith("RT_"))
+x+=k+"<br>";
+
+}
+
+list.innerHTML=x;
+
+}
+
+
+show();
+
+
+</script>
+
+
+</body>
+
+</html>
